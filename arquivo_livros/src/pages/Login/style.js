@@ -37,7 +37,7 @@ export const ContainerImage = styled.div`
         padding: 10px;
         width: 70%;
         border-radius: 5px;
-    }
+    };
 `;
 
 export const ContainerLogin = styled.div`
@@ -86,8 +86,24 @@ export const Form = styled.form`
         width: 100%;
         border-radius: 3px;
         padding: 10px 5px;
-        border: 1px solid rgba(28,28,28, .6);
+        transition: .3s;
+        border: ${(props) => {
+            let border;
+            props.login_failed ? border = '2px solid var(--red)' : border = '2px solid rgba(28,28,28, .2)';
+            return border;
+        }};
         background: #fff;
+        outline-color: ${(props) => {
+            let color;
+            props.login_failed ? color = color = 'var(--red)' : color = 'var(--black)';
+            return color;
+        }}
+    }
+
+    .failedMessage {
+        color: var(--red);
+        transition: .3s;
+        text-align: center;
     }
 
 `;

@@ -7,12 +7,16 @@ import {
 import Button from '../../common/Button';
 import { useState } from 'react';
 import { api } from '../../services/api.js';
+import { useUser } from '../../contexts/UserContext.jsx';
+import { setLocal } from '../../services/localStorage.js';
 
 function Login() {
 
     const [login, setLogin] = useState('');
     const [senha, setSenha] = useState('');
     const [showPassword, setShowPassword] = useState('password');
+    const [loginFailed, setLoginFailed] = useState(false);
+
 
     async function doLogin() {
         await api.post('/login', {
@@ -20,8 +24,12 @@ function Login() {
             senha: senha
         }).then(resp => {
             console.log(resp);
+            setLocal("userId", resp.data.idUsuario);
+            window.location.href = "/home";
         }).catch(err => {
             console.log(err);
+            if (err.request.status !== 200)
+                setLoginFailed(true);
         })
     }
 
@@ -37,7 +45,7 @@ function Login() {
                 </h2>
             </ContainerImage>
             <ContainerLogin>
-                <Form>
+                <Form login_failed={loginFailed}>
                     <div>
                         <label htmlFor="#login">Login</label>
                         <input
@@ -60,12 +68,12 @@ function Login() {
                         />
                     </div>
 
-                    <div class="containerCheckbox">
+                    <div className="containerCheckbox">
                         <input
                             id="showPassword"
                             type="checkbox"
                             onChange={(e) => {
-                                if(e.target.checked === true)
+                                if (e.target.checked === true)
                                     setShowPassword('text');
                                 else
                                     setShowPassword('password');
@@ -73,6 +81,12 @@ function Login() {
                         />
                         <label htmlFor="#showPassword">Mostrar senha</label>
                     </div>
+                    {
+                        loginFailed ?
+                            <div className="failedMessage">Login ou senha inválido</div>
+                            :
+                            <div></div>
+                    }
 
                 </Form>
 
