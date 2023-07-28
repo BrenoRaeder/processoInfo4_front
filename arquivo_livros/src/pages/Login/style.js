@@ -38,6 +38,10 @@ export const ContainerImage = styled.div`
         width: 70%;
         border-radius: 5px;
     };
+
+    @media only screen and (max-width: 650px) {
+        display: none;
+    }
 `;
 
 export const ContainerLogin = styled.div`
@@ -48,6 +52,10 @@ export const ContainerLogin = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @media only screen and (max-width: 650px) {
+        width: 100%;
+    }
 `;
 
 export const Form = styled.form`

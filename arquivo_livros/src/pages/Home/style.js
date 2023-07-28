@@ -46,6 +46,7 @@ export const ContainerUser = styled.div`
         span {
             font-size: 14px;
             font-weight: 100;
+            text-align: center;
         }
     }
 
@@ -62,6 +63,41 @@ export const ContainerUser = styled.div`
     h2 {
         font-weight: 100;
     }
+
+    @media only screen and (max-width: 700px) {
+        img {
+            width: 80px;
+            height: 80px;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+
+        .user_info {
+            align-items: center;
+        }
+    }
+
+    @media only screen and (max-width: 400px) {
+        .user_stats{
+            #highlight {
+                font-size: 15px;
+            }
+
+            span {
+                font-size: 10px;
+            }
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    }
 `;
 
 export const ContainerBooks = styled.div`
@@ -70,7 +106,12 @@ export const ContainerBooks = styled.div`
     width: 80%;
     margin: auto;
     justify-content: space-between;
+    gap: 30px;
 
+    @media only screen and (max-width: 700px) {
+        grid-template-columns: auto;
+        justify-content: center;
+    }
 `;
 
 export const BookImage = styled.div`
@@ -88,6 +129,11 @@ export const BookImage = styled.div`
 
     &:hover {
         box-shadow: 5px 5px 10px rgba(28, 28, 28, .9);
+    }
+
+    @media only screen and (max-width: 700px) {
+        width: 60vw;
+        height: 84vw;
     }
 `;
 
