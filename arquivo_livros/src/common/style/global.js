@@ -14,12 +14,9 @@ export const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
   padding: 0;
-  display: flex;
-  place-items: center;
-  justify-content: center;
-  align-items: center;
   min-width: 320px;
   min-height: 100vh;
+  width: 100%;
 }
 `
 

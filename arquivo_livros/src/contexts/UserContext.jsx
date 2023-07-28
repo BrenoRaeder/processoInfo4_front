@@ -11,22 +11,26 @@ export function useUser() {
 export function UserProvider({ children }) {
 
     const [user, setUser] = useState();
+    const [userBooks, setUserBooks] = useState();
+    const [userBooksFiltered, setUserBooksFiltered] = useState();
 
     useEffect(() => {
         async function fecthUser() {
             await api.get(`/usuario/${getLocal("userId")}`).then(res => {
-                setUser(res.data)
+                setUser(res.data);
+                setUserBooks(res.data.listaLivros);
+                setUserBooksFiltered(res.data.listaLivros);
             }).catch(err => {
                 console.log(err);
             });
         }
 
         fecthUser();
-    })
+    }, [])
     
 
     return (
-        <UserContext.Provider value={{ user }}>
+        <UserContext.Provider value={{ user, userBooks, userBooksFiltered, setUserBooksFiltered }}>
             {children}
         </UserContext.Provider>
     )

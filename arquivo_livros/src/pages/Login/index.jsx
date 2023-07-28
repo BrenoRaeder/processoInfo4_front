@@ -25,7 +25,7 @@ function Login() {
         }).then(resp => {
             console.log(resp);
             setLocal("userId", resp.data.idUsuario);
-            window.location.href = "/home";
+            window.location.href = "/";
         }).catch(err => {
             console.log(err);
             if (err.request.status !== 200)

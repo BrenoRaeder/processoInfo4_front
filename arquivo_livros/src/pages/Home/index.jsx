@@ -14,11 +14,13 @@ import { setLocal } from '../../services/localStorage.js';
 function Home() {
 
     const { user } = useUser();
+    const { userBooksFiltered } = useUser();
     const [bookModal, setBookModal] = useState(false);
 
     function openModal(id) {
         setLocal('bookId', id);
         setBookModal(true);
+        console.log(userBooksFiltered);
     }
 
     return (
@@ -59,7 +61,7 @@ function Home() {
 
                         <ContainerBooks>
                             {
-                                user.listaLivros.map(l => {
+                                userBooksFiltered.map(l => {
                                     return <BookImage
                                                 key={l.idLivro} 
                                                 book_image={l.imgCapa}
