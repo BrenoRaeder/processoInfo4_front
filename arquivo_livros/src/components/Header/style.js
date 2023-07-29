@@ -20,7 +20,7 @@ export const SearchBar = styled.div`
     display: flex;
     opacity: ${props => {
         let display = '';
-        props.isHome ? display = '1' : display = '0';
+        props.is_home ? display = '1' : display = '0';
         return display; 
     }};
     align-items: center;
@@ -33,7 +33,11 @@ export const SearchBar = styled.div`
 
     img {
         width: 20px;
-        cursor: pointer;
+        cursor: ${props => {
+            let cursor = '';
+            props.is_home ? cursor = 'pointer' : cursor = 'dafault';
+            return cursor; 
+        }};
         padding-top: 2px;
     }
 
@@ -42,6 +46,11 @@ export const SearchBar = styled.div`
         border: none;
         padding: 8px;
         border-radius: 10px;
+        cursor: ${props => {
+            let cursor = '';
+            props.is_home ? cursor = 'text' : cursor = 'default';
+            return cursor; 
+        }};
     }
 `;
 
@@ -66,7 +75,7 @@ export const NavItem = styled.h3`
     font-size: 17px;
     border-bottom: ${ (props) => {
         let border = '';
-        if(props.isHome)
+        if(props.is_home)
             border = '2px solid var(--black);';
         else 
            border = '2px solid transparent;';

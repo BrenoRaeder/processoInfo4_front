@@ -7,7 +7,6 @@ import {
 import Button from '../../common/Button';
 import { useState } from 'react';
 import { api } from '../../services/api.js';
-import { useUser } from '../../contexts/UserContext.jsx';
 import { setLocal } from '../../services/localStorage.js';
 
 function Login() {
@@ -23,11 +22,9 @@ function Login() {
             login: login,
             senha: senha
         }).then(resp => {
-            console.log(resp);
             setLocal("userId", resp.data.idUsuario);
             window.location.href = "/";
         }).catch(err => {
-            console.log(err);
             if (err.request.status !== 200)
                 setLoginFailed(true);
         })
